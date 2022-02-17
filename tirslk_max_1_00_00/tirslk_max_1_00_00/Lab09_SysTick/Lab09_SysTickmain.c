@@ -78,6 +78,11 @@ const uint32_t PulseBuf[100]={
     2120, 2374, 2639, 2914, 3196, 3486, 3781, 4082, 4386, 4692};
 void SysTick_Wait1us(uint32_t delay){
     // write this code
+
+    uint32_t i;
+      for(i=0; i<delay; i++){
+        SysTick_Wait(delay);  // wait 10ms (assumes 48 MHz clock)
+      }
     
 }
 
@@ -85,13 +90,18 @@ int Program9_1(void){
   Clock_Init48MHz();  // makes bus clock 48 MHz
   SysTick_Init();
   LaunchPad_Init();   // buttons and LEDs
-  TExaS_Init(LOGICANALYZER_P1);
-  while(1){
-    P1->OUT |= 0x01;   // red LED on
-    SysTick_Wait1us(7500);
-    P1->OUT &= ~0x01;  // red LED off
-    SysTick_Wait1us(2500);
-  }
+  P2->SEL0 &= ~0x40;
+      P2->SEL1 &= ~0x40; // 1) configure P2.6 as GPIO
+      P2->DIR |= 0x40;   // P2.6 output
+
+    while(1){
+      P2->OUT &= ~0x40;
+      P1->OUT |= 0x01;   // red LED on
+      SysTick_Wait1us(7500);
+      P1->OUT &= ~0x01;  // red LED off
+      P2->OUT |= 0x40;
+      SysTick_Wait1us(2500);
+    }
 }
 int Program9_2(void){uint32_t H,L;
   Clock_Init48MHz();  // makes bus clock 48 MHz
@@ -117,13 +127,36 @@ int Program9_2(void){uint32_t H,L;
 //  and the duty cycle is varied sinuosoidally once a second
 int main(void){ 
   Clock_Init48MHz(); // makes it 48 MHz
-  TExaS_Init(LOGICANALYZER_P1);
+  //STExaS_Init(LOGICANALYZER_P1);
   LaunchPad_Init();   // buttons and LEDs
   SysTick_Init();
   // write this code
+  P2->SEL0 &= ~0x40;
+    P2->SEL1 &= ~0x40; // 1) configure P2.6 as GPIO
+    P2->DIR |= 0x40;   // P2.6 output
+        uint32_t H;
+        uint32_t L;
+        uint16_t duty = 0;
+        uint16_t pulse = 0;
   EnableInterrupts();
   while(1){
       // write this code
+      //Program9_1();
+      if(pulse == 100)
+      {
+          pulse = 0;
+          duty = 0;
+      }
+
+     H = PulseBuf[pulse];
+     L = 10000 - H;
+     P1->OUT |= 0x01;
+     SysTick_Wait1us(H);
+     P1->OUT &= ~0x01;
+     SysTick_Wait1us(L);
+     pulse++;
+     duty++;
+
   }
 }
 

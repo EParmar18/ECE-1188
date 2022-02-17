@@ -59,11 +59,11 @@ void LaunchPad_Init(void){
   P1->DIR |= 0x01;      //    make P1.0 out
   P1->REN |= 0x12;      // 3) enable pull resistors on P1.4 and P1.1
   P1->OUT |= 0x12;      //    P1.4 and P1.1 are pull-up
-  P2->SEL0 &= ~0x07;
-  P2->SEL1 &= ~0x07;    // 1) configure P2.2-P2.0 as GPIO
-  P2->DIR |= 0x07;      // 2) make P2.2-P2.0 out
-  P2->DS |= 0x07;       // 3) activate increased drive strength
-  P2->OUT &= ~0x07;     //    all LEDs off
+  P2->SEL0 &= ~0x20;
+  P2->SEL1 &= ~0x20;    // 1) configure P2.2-P2.0 as GPIO
+  P2->DIR |= 0x20;      // 2) make P2.2-P2.0 out
+  P2->DS |= 0x20;       // 3) activate increased drive strength
+  P2->OUT &= ~0x20;     //    all LEDs off
 }
 
 //------------LaunchPad_Input------------
