@@ -57,6 +57,7 @@ policies, either expressed or implied, of the FreeBSD Project.
 #include "..\inc\Clock.h"
 #include "..\inc\TExaS.h"
 
+
 uint8_t Data; // QTRX
 // Test main for section 6.4.3
 int Program6_1(void){
@@ -70,7 +71,7 @@ int Program6_1(void){
 }
 
 int32_t Position; // 332 is right, and -332 is left of center
-int main(void){
+int main3(void){
   Clock_Init48MHz();
   Reflectance_Init();
   TExaS_Init(LOGICANALYZER_P7);
@@ -105,8 +106,8 @@ int main2(void){ // main2(void){
   }
 }
 
-int main3(void){ // main3
-    int32_t i;
+int main(void){ // main3
+  int32_t i;
   Clock_Init48MHz();
   Reflectance_Init();
   P4->SEL0 &= ~0x01;

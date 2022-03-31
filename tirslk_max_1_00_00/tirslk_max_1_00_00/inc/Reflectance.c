@@ -64,6 +64,14 @@ policies, either expressed or implied, of the FreeBSD Project.
 // Output: none
 void Reflectance_Init(void){
     // write this as part of Lab 6
+    P5->SEL0 = 0x04;
+    P5->SEL1 = 0x04;
+    P5->DIR = 0x04;
+
+    P7->SEL0 = 0xFF;
+    P7->SEL1 = 0xFF;
+    P7->DIR &= ~0xFF;
+    P7->OUT = 0x00;
 }
 
 // ------------Reflectance_Read------------
@@ -78,7 +86,20 @@ void Reflectance_Init(void){
 // Output: sensor readings
 // Assumes: Reflectance_Init() has been called
 uint8_t Reflectance_Read(uint32_t time){
-uint8_t result;
+    Clokc_Init48MHz();
+    uint8_t result;
+    Reflectance_Init();
+
+    P4->SEL0 &= ~0x01;  // configure P5.0 GPIO
+    P4->SEL1 &= ~0x01;
+    P4->DIR |= 0x01;    // make P5.0 output
+
+    result = (P7->IN&0xFF);
+    P7->OUT = 0xFF;
+    // Pulse sensors for 10 us
+    Clock_Delay1us(time);
+
+
     // write this as part of Lab 6
   result = 0; // replace this line
   return result;

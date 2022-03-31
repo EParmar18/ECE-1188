@@ -67,7 +67,7 @@ int main(void){
   EnableInterrupts();
   while(1){
     WaitForInterrupt();
-    P2->OUT ^= 0x01; // foreground thread
+    P2->OUT ^= 0x03; // foreground thread
     MainCount++;
   }
 }

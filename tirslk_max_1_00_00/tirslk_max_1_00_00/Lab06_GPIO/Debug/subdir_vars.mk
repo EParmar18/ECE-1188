@@ -11,7 +11,7 @@ CMD_SRCS += \
 C_SRCS += \
 C:/Users/eshan/OneDrive/Documents/ECE\ 1188/tirslk_max_1_00_00/tirslk_max_1_00_00/inc/Clock.c \
 ../Lab06_GPIOmain.c \
-C:/Users/eshan/OneDrive/Documents/ECE\ 1188/tirslk_max_1_00_00/tirslk_max_1_00_00/inc/Reflectance.c \
+../Reflectance.c \
 C:/Users/eshan/OneDrive/Documents/ECE\ 1188/tirslk_max_1_00_00/tirslk_max_1_00_00/inc/TExaS.c \
 ../startup_msp432p401r_ccs.c \
 ../system_msp432p401r.c 
@@ -51,7 +51,7 @@ C_DEPS__QUOTED += \
 C_SRCS__QUOTED += \
 "C:/Users/eshan/OneDrive/Documents/ECE 1188/tirslk_max_1_00_00/tirslk_max_1_00_00/inc/Clock.c" \
 "../Lab06_GPIOmain.c" \
-"C:/Users/eshan/OneDrive/Documents/ECE 1188/tirslk_max_1_00_00/tirslk_max_1_00_00/inc/Reflectance.c" \
+"../Reflectance.c" \
 "C:/Users/eshan/OneDrive/Documents/ECE 1188/tirslk_max_1_00_00/tirslk_max_1_00_00/inc/TExaS.c" \
 "../startup_msp432p401r_ccs.c" \
 "../system_msp432p401r.c" 

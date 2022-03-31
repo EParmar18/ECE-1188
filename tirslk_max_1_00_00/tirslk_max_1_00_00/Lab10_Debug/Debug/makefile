@@ -20,6 +20,7 @@ ORDERED_OBJS += \
 "./SysTickInts.obj" \
 "./startup_msp432p401r_ccs.obj" \
 "./system_msp432p401r.obj" \
+"./targetConfigs/Lab10_Debugmain.obj" \
 "../msp432p401r.cmd" \
 $(GEN_CMDS__FLAG) \
 -llibc.a \
@@ -32,7 +33,9 @@ RMDIR := RMDIR /S/Q
 # All of the sources participating in the build are defined here
 -include sources.mk
 -include subdir_vars.mk
+-include targetConfigs/subdir_vars.mk
 -include subdir_rules.mk
+-include targetConfigs/subdir_rules.mk
 -include objects.mk
 
 ifneq ($(MAKECMDGOALS),clean)
@@ -163,8 +166,8 @@ Lab10_Debug.hex: $(EXE_OUTPUTS)
 # Other Targets
 clean:
 	-$(RM) $(BIN_OUTPUTS__QUOTED)$(EXE_OUTPUTS__QUOTED)
-	-$(RM) "Bump.obj" "Clock.obj" "CortexM.obj" "FlashProgram.obj" "Lab10_Debugmain.obj" "LaunchPad.obj" "Reflectance.obj" "SysTickInts.obj" "startup_msp432p401r_ccs.obj" "system_msp432p401r.obj" 
-	-$(RM) "Bump.d" "Clock.d" "CortexM.d" "FlashProgram.d" "Lab10_Debugmain.d" "LaunchPad.d" "Reflectance.d" "SysTickInts.d" "startup_msp432p401r_ccs.d" "system_msp432p401r.d" 
+	-$(RM) "Bump.obj" "Clock.obj" "CortexM.obj" "FlashProgram.obj" "Lab10_Debugmain.obj" "LaunchPad.obj" "Reflectance.obj" "SysTickInts.obj" "startup_msp432p401r_ccs.obj" "system_msp432p401r.obj" "targetConfigs\Lab10_Debugmain.obj" 
+	-$(RM) "Bump.d" "Clock.d" "CortexM.d" "FlashProgram.d" "Lab10_Debugmain.d" "LaunchPad.d" "Reflectance.d" "SysTickInts.d" "startup_msp432p401r_ccs.d" "system_msp432p401r.d" "targetConfigs\Lab10_Debugmain.d" 
 	-@echo 'Finished clean'
 	-@echo ' '
 
