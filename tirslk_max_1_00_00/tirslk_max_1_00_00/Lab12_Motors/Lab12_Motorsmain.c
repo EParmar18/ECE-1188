@@ -80,7 +80,7 @@ int Program12_1(void){
 }
 
 // Voltage current and speed as a function of duty cycle
-int main(void){ //Program12_2(void){
+int Program12_2(void){ //Program12_2(void){
   uint16_t duty;
   Clock_Init48MHz();
   LaunchPad_Init();   // built-in switches and LEDs
@@ -95,7 +95,7 @@ int main(void){ //Program12_2(void){
   }
 }
 
-int Program12_3(void){
+int main(void){
   Clock_Init48MHz();
   LaunchPad_Init();   // built-in switches and LEDs
   Bump_Init();        // bump switches

@@ -131,6 +131,8 @@ P3.10 P5.5 UNUSED     NA        P4.10 P3.7  UNUSED      OUT(see R75)
 #include "sl_common.h"
 #include "UART0.h"
 #include "debug.h"
+#include "Motor.h"
+#include "PWM.h"
 #include "fpu.h"
 #include "rom.h"
 #include "sysctl.h"
@@ -212,7 +214,7 @@ void Crash(uint32_t time){
 // 2) you can change metric to imperial if you want temperature in F
 #define WELCOME "\nFetching weather from openweathermap.org"
 #define WEBPAGE "api.openweathermap.org"
-#define REQUEST "GET /data/2.5/weather?q=Austin&APPID=1234567890abcdef1234567890abcdef&units=metric HTTP/1.1\nHost:api.openweathermap.org\nAccept: */*\n\n"
+#define REQUEST "GET /data/2.5/weather?q=Pittsburgh&APPID=639fb2121841fa6e2063a062cc5b47fa&units=imperial HTTP/1.1\nHost:api.openweathermap.org\nAccept: */*\n\n"
 // 1) go to http://openweathermap.org/appid#use 
 // 2) Register on the Sign up page
 // 3) get an API key (APPID) replace the 1234567890abcdef1234567890abcdef with your APPID
@@ -233,7 +235,7 @@ int32_t ASize = 0; SlSockAddrIn_t  Addr;
   LaunchPad_Init();    // initialize LaunchPad I/O
   printf(WELCOME);
   printf("\nStarting configureSimpleLinkToDefaultState(); ...");
-  retVal = configureSimpleLinkToDefaultState();  
+  retVal = configureSimpleLinkToDefaultState();
   if(retVal < 0)Crash(4000000);
   printf(" Completed\nStarting sl_Start(0, 0, 0); ...");
   retVal = sl_Start(0, 0, 0);
@@ -272,6 +274,19 @@ int32_t ASize = 0; SlSockAddrIn_t  Addr;
         printf(" Failed\n");
     }
     printf("Push LaunchPad switch to run again\n");
+    SlGetRxStatResponse_t rssiRxStat;
+
+       int rssiDataAct;
+
+       if (sl_WlanRxStatGet(&rssiRxStat, 0) == 0) {
+         if (rssiRxStat.AvarageDataCtrlRssi != 0) {
+           rssiDataAct = rssiRxStat.AvarageDataCtrlRssi;
+         }
+       } else {
+         rssiDataAct = -99;
+       }
+
+    printf ("\nRSSI: %d\n\n", rssiDataAct);
     while(LaunchPad_Input()==0){}; // wait for touch
     LaunchPad_Output(0);
   }

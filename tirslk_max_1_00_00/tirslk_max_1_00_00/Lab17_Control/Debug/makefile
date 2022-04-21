@@ -20,6 +20,7 @@ ORDERED_OBJS += \
 "./LaunchPad.obj" \
 "./Motor.obj" \
 "./Nokia5110.obj" \
+"./PID_Motor_Control.obj" \
 "./PWM.obj" \
 "./Reflectance.obj" \
 "./SysTickInts.obj" \
@@ -173,8 +174,8 @@ Lab17_Control.hex: $(EXE_OUTPUTS)
 # Other Targets
 clean:
 	-$(RM) $(BIN_OUTPUTS__QUOTED)$(EXE_OUTPUTS__QUOTED)
-	-$(RM) "ADC14.obj" "Bump.obj" "Clock.obj" "CortexM.obj" "IRDistance.obj" "LPF.obj" "Lab17_Control.obj" "LaunchPad.obj" "Motor.obj" "Nokia5110.obj" "PWM.obj" "Reflectance.obj" "SysTickInts.obj" "TA3InputCapture.obj" "TExaS.obj" "Tachometer.obj" "TimerA1.obj" "startup_msp432p401r_ccs.obj" "system_msp432p401r.obj" 
-	-$(RM) "ADC14.d" "Bump.d" "Clock.d" "CortexM.d" "IRDistance.d" "LPF.d" "Lab17_Control.d" "LaunchPad.d" "Motor.d" "Nokia5110.d" "PWM.d" "Reflectance.d" "SysTickInts.d" "TA3InputCapture.d" "TExaS.d" "Tachometer.d" "TimerA1.d" "startup_msp432p401r_ccs.d" "system_msp432p401r.d" 
+	-$(RM) "ADC14.obj" "Bump.obj" "Clock.obj" "CortexM.obj" "IRDistance.obj" "LPF.obj" "Lab17_Control.obj" "LaunchPad.obj" "Motor.obj" "Nokia5110.obj" "PID_Motor_Control.obj" "PWM.obj" "Reflectance.obj" "SysTickInts.obj" "TA3InputCapture.obj" "TExaS.obj" "Tachometer.obj" "TimerA1.obj" "startup_msp432p401r_ccs.obj" "system_msp432p401r.obj" 
+	-$(RM) "ADC14.d" "Bump.d" "Clock.d" "CortexM.d" "IRDistance.d" "LPF.d" "Lab17_Control.d" "LaunchPad.d" "Motor.d" "Nokia5110.d" "PID_Motor_Control.d" "PWM.d" "Reflectance.d" "SysTickInts.d" "TA3InputCapture.d" "TExaS.d" "Tachometer.d" "TimerA1.d" "startup_msp432p401r_ccs.d" "system_msp432p401r.d" 
 	-@echo 'Finished clean'
 	-@echo ' '
 

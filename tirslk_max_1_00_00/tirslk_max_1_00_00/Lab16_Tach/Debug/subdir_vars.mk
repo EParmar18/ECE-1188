@@ -16,13 +16,15 @@ C:/Users/eshan/OneDrive/Documents/ECE\ 1188/tirslk_max_1_00_00/tirslk_max_1_00_0
 ../Lab16_Tachmain.c \
 C:/Users/eshan/OneDrive/Documents/ECE\ 1188/tirslk_max_1_00_00/tirslk_max_1_00_00/inc/LaunchPad.c \
 C:/Users/eshan/OneDrive/Documents/ECE\ 1188/tirslk_max_1_00_00/tirslk_max_1_00_00/inc/Motor.c \
+../MotorSweep.c \
 C:/Users/eshan/OneDrive/Documents/ECE\ 1188/tirslk_max_1_00_00/tirslk_max_1_00_00/inc/Nokia5110.c \
 C:/Users/eshan/OneDrive/Documents/ECE\ 1188/tirslk_max_1_00_00/tirslk_max_1_00_00/inc/PWM.c \
 C:/Users/eshan/OneDrive/Documents/ECE\ 1188/tirslk_max_1_00_00/tirslk_max_1_00_00/inc/SysTick.c \
-C:/Users/eshan/OneDrive/Documents/ECE\ 1188/tirslk_max_1_00_00/tirslk_max_1_00_00/inc/TA3InputCapture.c \
+../TA3InputCapture.c \
 C:/Users/eshan/OneDrive/Documents/ECE\ 1188/tirslk_max_1_00_00/tirslk_max_1_00_00/inc/TExaS.c \
+../TachDemo.c \
 C:/Users/eshan/OneDrive/Documents/ECE\ 1188/tirslk_max_1_00_00/tirslk_max_1_00_00/inc/Tachometer.c \
-C:/Users/eshan/OneDrive/Documents/ECE\ 1188/tirslk_max_1_00_00/tirslk_max_1_00_00/inc/TimerA1.c \
+../TimerA1.c \
 ../startup_msp432p401r_ccs.c \
 ../system_msp432p401r.c 
 
@@ -34,11 +36,13 @@ C_DEPS += \
 ./Lab16_Tachmain.d \
 ./LaunchPad.d \
 ./Motor.d \
+./MotorSweep.d \
 ./Nokia5110.d \
 ./PWM.d \
 ./SysTick.d \
 ./TA3InputCapture.d \
 ./TExaS.d \
+./TachDemo.d \
 ./Tachometer.d \
 ./TimerA1.d \
 ./startup_msp432p401r_ccs.d \
@@ -52,11 +56,13 @@ OBJS += \
 ./Lab16_Tachmain.obj \
 ./LaunchPad.obj \
 ./Motor.obj \
+./MotorSweep.obj \
 ./Nokia5110.obj \
 ./PWM.obj \
 ./SysTick.obj \
 ./TA3InputCapture.obj \
 ./TExaS.obj \
+./TachDemo.obj \
 ./Tachometer.obj \
 ./TimerA1.obj \
 ./startup_msp432p401r_ccs.obj \
@@ -70,11 +76,13 @@ OBJS__QUOTED += \
 "Lab16_Tachmain.obj" \
 "LaunchPad.obj" \
 "Motor.obj" \
+"MotorSweep.obj" \
 "Nokia5110.obj" \
 "PWM.obj" \
 "SysTick.obj" \
 "TA3InputCapture.obj" \
 "TExaS.obj" \
+"TachDemo.obj" \
 "Tachometer.obj" \
 "TimerA1.obj" \
 "startup_msp432p401r_ccs.obj" \
@@ -88,11 +96,13 @@ C_DEPS__QUOTED += \
 "Lab16_Tachmain.d" \
 "LaunchPad.d" \
 "Motor.d" \
+"MotorSweep.d" \
 "Nokia5110.d" \
 "PWM.d" \
 "SysTick.d" \
 "TA3InputCapture.d" \
 "TExaS.d" \
+"TachDemo.d" \
 "Tachometer.d" \
 "TimerA1.d" \
 "startup_msp432p401r_ccs.d" \
@@ -106,13 +116,15 @@ C_SRCS__QUOTED += \
 "../Lab16_Tachmain.c" \
 "C:/Users/eshan/OneDrive/Documents/ECE 1188/tirslk_max_1_00_00/tirslk_max_1_00_00/inc/LaunchPad.c" \
 "C:/Users/eshan/OneDrive/Documents/ECE 1188/tirslk_max_1_00_00/tirslk_max_1_00_00/inc/Motor.c" \
+"../MotorSweep.c" \
 "C:/Users/eshan/OneDrive/Documents/ECE 1188/tirslk_max_1_00_00/tirslk_max_1_00_00/inc/Nokia5110.c" \
 "C:/Users/eshan/OneDrive/Documents/ECE 1188/tirslk_max_1_00_00/tirslk_max_1_00_00/inc/PWM.c" \
 "C:/Users/eshan/OneDrive/Documents/ECE 1188/tirslk_max_1_00_00/tirslk_max_1_00_00/inc/SysTick.c" \
-"C:/Users/eshan/OneDrive/Documents/ECE 1188/tirslk_max_1_00_00/tirslk_max_1_00_00/inc/TA3InputCapture.c" \
+"../TA3InputCapture.c" \
 "C:/Users/eshan/OneDrive/Documents/ECE 1188/tirslk_max_1_00_00/tirslk_max_1_00_00/inc/TExaS.c" \
+"../TachDemo.c" \
 "C:/Users/eshan/OneDrive/Documents/ECE 1188/tirslk_max_1_00_00/tirslk_max_1_00_00/inc/Tachometer.c" \
-"C:/Users/eshan/OneDrive/Documents/ECE 1188/tirslk_max_1_00_00/tirslk_max_1_00_00/inc/TimerA1.c" \
+"../TimerA1.c" \
 "../startup_msp432p401r_ccs.c" \
 "../system_msp432p401r.c" 
 

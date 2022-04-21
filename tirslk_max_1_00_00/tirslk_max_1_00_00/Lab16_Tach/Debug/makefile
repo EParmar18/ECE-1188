@@ -17,11 +17,13 @@ ORDERED_OBJS += \
 "./Lab16_Tachmain.obj" \
 "./LaunchPad.obj" \
 "./Motor.obj" \
+"./MotorSweep.obj" \
 "./Nokia5110.obj" \
 "./PWM.obj" \
 "./SysTick.obj" \
 "./TA3InputCapture.obj" \
 "./TExaS.obj" \
+"./TachDemo.obj" \
 "./Tachometer.obj" \
 "./TimerA1.obj" \
 "./startup_msp432p401r_ccs.obj" \
@@ -169,8 +171,8 @@ Lab16_Tach.hex: $(EXE_OUTPUTS)
 # Other Targets
 clean:
 	-$(RM) $(BIN_OUTPUTS__QUOTED)$(EXE_OUTPUTS__QUOTED)
-	-$(RM) "Bump.obj" "Clock.obj" "CortexM.obj" "FlashProgram.obj" "Lab16_Tachmain.obj" "LaunchPad.obj" "Motor.obj" "Nokia5110.obj" "PWM.obj" "SysTick.obj" "TA3InputCapture.obj" "TExaS.obj" "Tachometer.obj" "TimerA1.obj" "startup_msp432p401r_ccs.obj" "system_msp432p401r.obj" 
-	-$(RM) "Bump.d" "Clock.d" "CortexM.d" "FlashProgram.d" "Lab16_Tachmain.d" "LaunchPad.d" "Motor.d" "Nokia5110.d" "PWM.d" "SysTick.d" "TA3InputCapture.d" "TExaS.d" "Tachometer.d" "TimerA1.d" "startup_msp432p401r_ccs.d" "system_msp432p401r.d" 
+	-$(RM) "Bump.obj" "Clock.obj" "CortexM.obj" "FlashProgram.obj" "Lab16_Tachmain.obj" "LaunchPad.obj" "Motor.obj" "MotorSweep.obj" "Nokia5110.obj" "PWM.obj" "SysTick.obj" "TA3InputCapture.obj" "TExaS.obj" "TachDemo.obj" "Tachometer.obj" "TimerA1.obj" "startup_msp432p401r_ccs.obj" "system_msp432p401r.obj" 
+	-$(RM) "Bump.d" "Clock.d" "CortexM.d" "FlashProgram.d" "Lab16_Tachmain.d" "LaunchPad.d" "Motor.d" "MotorSweep.d" "Nokia5110.d" "PWM.d" "SysTick.d" "TA3InputCapture.d" "TExaS.d" "TachDemo.d" "Tachometer.d" "TimerA1.d" "startup_msp432p401r_ccs.d" "system_msp432p401r.d" 
 	-@echo 'Finished clean'
 	-@echo ' '
 

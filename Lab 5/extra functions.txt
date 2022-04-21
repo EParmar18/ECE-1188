@@ -1,0 +1,178 @@
+//void Motor_Init(void){
+//// Initializes the 6 GPIO lines and puts driver to sleep
+//// Returns right away
+//// initialize P5.4 and P5.5 and make them outputs
+//
+//    // Set P2.6 and P2.7 as outputs for EN ports
+//    P2->SEL0 &= ~0xC0;
+//    P2->SEL1 &= ~0xC0;
+//    P2->DIR |= 0xC0;
+//    P2->REN &= ~0xC0;
+//
+//    // Set P3.6 and P3.7 as outputs for nSLEEP ports
+//    P3->SEL0 &= ~0xC0;
+//    P3->SEL1 &= ~0xC0;
+//    P3->DIR |= 0xC0;
+//    P3->REN &= ~0xC0;
+//
+//    // Set P5.4 and P5.5 as outputs for PH ports
+//    P5->SEL0 &= ~0x30;
+//    P5->SEL1 &= ~0x30;
+//    P5->DIR  |= 0x30;
+//    P5->REN &= ~0x30;
+//
+//    // Put motors to sleep to prevent any movement during initialization
+//    P3->OUT &= ~0xC0;
+//
+//    // Initialize PWM
+//    PWM_Init34(12000, 1500, 1500);
+//}
+//
+//void Motor_Stop(void){
+//// Stops both motors, puts driver to sleep
+//// Returns right away
+//
+//    P2->OUT &= ~0xC0;
+//    P3->OUT &= ~0xC0;
+//    P5->OUT &= ~0x30;
+//}
+//
+//void Motor_Forward(uint16_t dutyRight, uint16_t dutyLeft){
+//// Drives both motors forward at duty (100 to 9900)
+//
+//    // Unsleep motors and set direction forward
+//    P3->OUT |= 0xC0;
+//    P5->OUT &= ~0x30;
+//
+//    // Set PWM duty cycles
+//    PWM_Duty3(dutyRight);
+//    PWM_Duty4(dutyLeft);
+//}
+//
+//void PWM_Duty3(uint16_t duty3){
+//    // write this as part of Lab 13
+//    TIMER_A0->CCR[3] = duty3;
+//}
+//
+////***************************PWM_Duty4*******************************
+//// change duty cycle of PWM output on P2.7
+//// Inputs:  duty4
+//// Outputs: none// period of P2.7 is 2*period*666.7ns, duty cycle is duty2/period
+//void PWM_Duty4(uint16_t duty4){
+//    // write this as part of Lab 13
+//    TIMER_A0->CCR[4] = duty4;
+//}
+//
+//void PWM_Init34(uint16_t period, uint16_t duty3, uint16_t duty4){
+//    // write this as part of Lab 13
+//    P2->DIR |= 0xC0;            // Set P2.6 and P2.7
+//    P2->SEL0 |= 0xC0;
+//    P2->SEL1 &= ~0xC0;
+//    TIMER_A0->CCTL[0] = 0x0080; // Toggle CCIO
+//    TIMER_A0->CCR[0] = period;  // Set period
+//    TIMER_A0->EX0 = 0x0000;     // Divide by 0
+//    TIMER_A0->CCTL[3] = 0x0040; // Toggle/reset CCCR3
+//    TIMER_A0->CCR[3] = duty3;   // CCR3 duty cycle
+//    TIMER_A0->CCTL[4] = 0x0040; // Toggle/reset CCR4
+//    TIMER_A0->CCR[4] = duty4;   // CCR4 duty cycle
+//    TIMER_A0->CTL = 0x02F0;     // SMCLK = 12MHz
+//}
+//
+//void LaunchPad_Init(void){
+//  P1->SEL0 &= ~0x13;
+//  P1->SEL1 &= ~0x13;    // 1) configure P1.4, P1.1, and P1.0 as GPIO
+//  P1->DIR &= ~0x12;     // 2) make P1.4 and P1.1 in
+//  P1->DIR |= 0x01;      //    make P1.0 out
+//  P1->REN |= 0x12;      // 3) enable pull resistors on P1.4 and P1.1
+//  P1->OUT |= 0x12;      //    P1.4 and P1.1 are pull-up
+//  P2->SEL0 &= ~0x20;
+//  P2->SEL1 &= ~0x20;    // 1) configure P2.2-P2.0 as GPIO
+//  P2->DIR |= 0x20;      // 2) make P2.2-P2.0 out
+//  P2->DS |= 0x20;       // 3) activate increased drive strength
+//  P2->OUT &= ~0x20;     //    all LEDs off
+//}
+//
+//uint32_t ClockFrequency = 3000000; // cycles/second
+////static uint32_t SubsystemFrequency = 3000000; // cycles/second
+//
+//// ------------Clock_InitFastest------------
+//// Configure the system clock to run at the fastest
+//// and most accurate settings.  For example, if the
+//// LaunchPad has a crystal, it should be used here.
+//// Call BSP_Clock_GetFreq() to get the current system
+//// clock frequency for the LaunchPad.
+//// Input: none
+//// Output: none
+//uint32_t Prewait = 0;                   // loops between BSP_Clock_InitFastest() called and PCM idle (expect 0)
+//uint32_t CPMwait = 0;                   // loops between Power Active Mode Request and Current Power Mode matching requested mode (expect small)
+//uint32_t Postwait = 0;                  // loops between Current Power Mode matching requested mode and PCM module idle (expect about 0)
+//uint32_t IFlags = 0;                    // non-zero if transition is invalid
+//uint32_t Crystalstable = 0;             // loops before the crystal stabilizes (expect small)
+//void Clock_Init48MHz(void){
+//  // wait for the PCMCTL0 and Clock System to be write-able by waiting for Power Control Manager to be idle
+//  while(PCM->CTL1&0x00000100){
+////  while(PCMCTL1&0x00000100){
+//    Prewait = Prewait + 1;
+//    if(Prewait >= 100000){
+//      return;                           // time out error
+//    }
+//  }
+//  // request power active mode LDO VCORE1 to support the 48 MHz frequency
+//  PCM->CTL0 = (PCM->CTL0&~0xFFFF000F) |     // clear PCMKEY bit field and AMR bit field
+////  PCMCTL0 = (PCMCTL0&~0xFFFF000F) |     // clear PCMKEY bit field and AMR bit field
+//            0x695A0000 |                // write the proper PCM key to unlock write access
+//            0x00000001;                 // request power active mode LDO VCORE1
+//  // check if the transition is invalid (see Figure 7-3 on p344 of datasheet)
+//  if(PCM->IFG&0x00000004){
+//    IFlags = PCM->IFG;                    // bit 2 set on active mode transition invalid; bits 1-0 are for LPM-related errors; bit 6 is for DC-DC-related error
+//    PCM->CLRIFG = 0x00000004;             // clear the transition invalid flag
+//    // to do: look at CPM bit field in PCMCTL0, figure out what mode you're in, and step through the chart to transition to the mode you want
+//    // or be lazy and do nothing; this should work out of reset at least, but it WILL NOT work if Clock_Int32kHz() or Clock_InitLowPower() has been called
+//    return;
+//  }
+//  // wait for the CPM (Current Power Mode) bit field to reflect a change to active mode LDO VCORE1
+//  while((PCM->CTL0&0x00003F00) != 0x00000100){
+//    CPMwait = CPMwait + 1;
+//    if(CPMwait >= 500000){
+//      return;                           // time out error
+//    }
+//  }
+//  // wait for the PCMCTL0 and Clock System to be write-able by waiting for Power Control Manager to be idle
+//  while(PCM->CTL1&0x00000100){
+//    Postwait = Postwait + 1;
+//    if(Postwait >= 100000){
+//      return;                           // time out error
+//    }
+//  }
+//  // initialize PJ.3 and PJ.2 and make them HFXT (PJ.3 built-in 48 MHz crystal out; PJ.2 built-in 48 MHz crystal in)
+//  PJ->SEL0 |= 0x0C;
+//  PJ->SEL1 &= ~0x0C;                    // configure built-in 48 MHz crystal for HFXT operation
+////  PJDIR |= 0x08;                      // make PJ.3 HFXTOUT (unnecessary)
+////  PJDIR &= ~0x04;                     // make PJ.2 HFXTIN (unnecessary)
+//  CS->KEY = 0x695A;                     // unlock CS module for register access
+//  CS->CTL2 = (CS->CTL2&~0x00700000) |   // clear HFXTFREQ bit field
+//           0x00600000 |                 // configure for 48 MHz external crystal
+//           0x00010000 |                 // HFXT oscillator drive selection for crystals >4 MHz
+//           0x01000000;                  // enable HFXT
+//  CS->CTL2 &= ~0x02000000;              // disable high-frequency crystal bypass
+//  // wait for the HFXT clock to stabilize
+//  while(CS->IFG&0x00000002){
+//    CS->CLRIFG = 0x00000002;              // clear the HFXT oscillator interrupt flag
+//    Crystalstable = Crystalstable + 1;
+//    if(Crystalstable > 100000){
+//      return;                           // time out error
+//    }
+//  }
+//  // configure for 2 wait states (minimum for 48 MHz operation) for flash Bank 0
+//  FLCTL->BANK0_RDCTL = (FLCTL->BANK0_RDCTL&~0x0000F000)|FLCTL_BANK0_RDCTL_WAIT_2;
+//  // configure for 2 wait states (minimum for 48 MHz operation) for flash Bank 1
+//  FLCTL->BANK1_RDCTL = (FLCTL->BANK1_RDCTL&~0x0000F000)|FLCTL_BANK1_RDCTL_WAIT_2;
+//  CS->CTL1 = 0x20000000 |               // configure for SMCLK divider /4
+//           0x00100000 |                 // configure for HSMCLK divider /2
+//           0x00000200 |                 // configure for ACLK sourced from REFOCLK
+//           0x00000050 |                 // configure for SMCLK and HSMCLK sourced from HFXTCLK
+//           0x00000005;                  // configure for MCLK sourced from HFXTCLK
+//  CS->KEY = 0;                          // lock CS module from unintended access
+//  ClockFrequency = 48000000;
+////  SubsystemFrequency = 12000000;
+//}

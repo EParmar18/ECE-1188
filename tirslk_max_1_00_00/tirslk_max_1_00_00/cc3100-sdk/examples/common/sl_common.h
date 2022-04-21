@@ -77,8 +77,8 @@ extern "C" {
  */
 
 #define SEC_TYPE   SL_SEC_TYPE_WPA
-#define SSID_NAME       "your_ap_name"    /* Access point name to connect to. */
-#define PASSKEY         "your_password"   /* Password in case of secure AP */
+#define SSID_NAME       "RR"    /* Access point name to connect to. */
+#define PASSKEY         "1%S73JtB"   /* Password in case of secure AP */
 #define PASSKEY_LEN     pal_Strlen(PASSKEY)  /* Password length in case of secure AP */
 /* Configuration of the device when it comes up in AP mode */
 #define SSID_AP_MODE       "<ap_mode_ssid>"       /* SSID of the CC3100 in AP mode */

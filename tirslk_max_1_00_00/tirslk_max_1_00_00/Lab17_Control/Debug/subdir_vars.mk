@@ -22,13 +22,14 @@ C:/Users/eshan/OneDrive/Documents/ECE\ 1188/tirslk_max_1_00_00/tirslk_max_1_00_0
 C:/Users/eshan/OneDrive/Documents/ECE\ 1188/tirslk_max_1_00_00/tirslk_max_1_00_00/inc/LaunchPad.c \
 C:/Users/eshan/OneDrive/Documents/ECE\ 1188/tirslk_max_1_00_00/tirslk_max_1_00_00/inc/Motor.c \
 C:/Users/eshan/OneDrive/Documents/ECE\ 1188/tirslk_max_1_00_00/tirslk_max_1_00_00/inc/Nokia5110.c \
+../PID_Motor_Control.c \
 C:/Users/eshan/OneDrive/Documents/ECE\ 1188/tirslk_max_1_00_00/tirslk_max_1_00_00/inc/PWM.c \
 C:/Users/eshan/OneDrive/Documents/ECE\ 1188/tirslk_max_1_00_00/tirslk_max_1_00_00/inc/Reflectance.c \
 C:/Users/eshan/OneDrive/Documents/ECE\ 1188/tirslk_max_1_00_00/tirslk_max_1_00_00/inc/SysTickInts.c \
-C:/Users/eshan/OneDrive/Documents/ECE\ 1188/tirslk_max_1_00_00/tirslk_max_1_00_00/inc/TA3InputCapture.c \
+../TA3InputCapture.c \
 C:/Users/eshan/OneDrive/Documents/ECE\ 1188/tirslk_max_1_00_00/tirslk_max_1_00_00/inc/TExaS.c \
-C:/Users/eshan/OneDrive/Documents/ECE\ 1188/tirslk_max_1_00_00/tirslk_max_1_00_00/inc/Tachometer.c \
-C:/Users/eshan/OneDrive/Documents/ECE\ 1188/tirslk_max_1_00_00/tirslk_max_1_00_00/inc/TimerA1.c \
+../Tachometer.c \
+../TimerA1.c \
 ../startup_msp432p401r_ccs.c \
 ../system_msp432p401r.c 
 
@@ -43,6 +44,7 @@ C_DEPS += \
 ./LaunchPad.d \
 ./Motor.d \
 ./Nokia5110.d \
+./PID_Motor_Control.d \
 ./PWM.d \
 ./Reflectance.d \
 ./SysTickInts.d \
@@ -64,6 +66,7 @@ OBJS += \
 ./LaunchPad.obj \
 ./Motor.obj \
 ./Nokia5110.obj \
+./PID_Motor_Control.obj \
 ./PWM.obj \
 ./Reflectance.obj \
 ./SysTickInts.obj \
@@ -85,6 +88,7 @@ OBJS__QUOTED += \
 "LaunchPad.obj" \
 "Motor.obj" \
 "Nokia5110.obj" \
+"PID_Motor_Control.obj" \
 "PWM.obj" \
 "Reflectance.obj" \
 "SysTickInts.obj" \
@@ -106,6 +110,7 @@ C_DEPS__QUOTED += \
 "LaunchPad.d" \
 "Motor.d" \
 "Nokia5110.d" \
+"PID_Motor_Control.d" \
 "PWM.d" \
 "Reflectance.d" \
 "SysTickInts.d" \
@@ -127,13 +132,14 @@ C_SRCS__QUOTED += \
 "C:/Users/eshan/OneDrive/Documents/ECE 1188/tirslk_max_1_00_00/tirslk_max_1_00_00/inc/LaunchPad.c" \
 "C:/Users/eshan/OneDrive/Documents/ECE 1188/tirslk_max_1_00_00/tirslk_max_1_00_00/inc/Motor.c" \
 "C:/Users/eshan/OneDrive/Documents/ECE 1188/tirslk_max_1_00_00/tirslk_max_1_00_00/inc/Nokia5110.c" \
+"../PID_Motor_Control.c" \
 "C:/Users/eshan/OneDrive/Documents/ECE 1188/tirslk_max_1_00_00/tirslk_max_1_00_00/inc/PWM.c" \
 "C:/Users/eshan/OneDrive/Documents/ECE 1188/tirslk_max_1_00_00/tirslk_max_1_00_00/inc/Reflectance.c" \
 "C:/Users/eshan/OneDrive/Documents/ECE 1188/tirslk_max_1_00_00/tirslk_max_1_00_00/inc/SysTickInts.c" \
-"C:/Users/eshan/OneDrive/Documents/ECE 1188/tirslk_max_1_00_00/tirslk_max_1_00_00/inc/TA3InputCapture.c" \
+"../TA3InputCapture.c" \
 "C:/Users/eshan/OneDrive/Documents/ECE 1188/tirslk_max_1_00_00/tirslk_max_1_00_00/inc/TExaS.c" \
-"C:/Users/eshan/OneDrive/Documents/ECE 1188/tirslk_max_1_00_00/tirslk_max_1_00_00/inc/Tachometer.c" \
-"C:/Users/eshan/OneDrive/Documents/ECE 1188/tirslk_max_1_00_00/tirslk_max_1_00_00/inc/TimerA1.c" \
+"../Tachometer.c" \
+"../TimerA1.c" \
 "../startup_msp432p401r_ccs.c" \
 "../system_msp432p401r.c" 
 

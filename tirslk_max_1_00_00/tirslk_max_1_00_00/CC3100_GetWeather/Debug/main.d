@@ -41,6 +41,8 @@ main.obj: C:/Users/eshan/OneDrive/Documents/ECE\ 1188/tirslk_max_1_00_00/tirslk_
 main.obj: C:/Users/eshan/OneDrive/Documents/ECE\ 1188/tirslk_max_1_00_00/tirslk_max_1_00_00/cc3100-sdk/examples/common/sl_common.h
 main.obj: C:/Users/eshan/OneDrive/Documents/ECE\ 1188/tirslk_max_1_00_00/tirslk_max_1_00_00/inc/UART0.h
 main.obj: C:/Users/eshan/OneDrive/Documents/ECE\ 1188/tirslk_max_1_00_00/tirslk_max_1_00_00/driverlib/debug.h
+main.obj: C:/Users/eshan/OneDrive/Documents/ECE\ 1188/tirslk_max_1_00_00/tirslk_max_1_00_00/inc/Motor.h
+main.obj: C:/Users/eshan/OneDrive/Documents/ECE\ 1188/tirslk_max_1_00_00/tirslk_max_1_00_00/inc/PWM.h
 main.obj: C:/Users/eshan/OneDrive/Documents/ECE\ 1188/tirslk_max_1_00_00/tirslk_max_1_00_00/driverlib/fpu.h
 main.obj: C:/Users/eshan/OneDrive/Documents/ECE\ 1188/tirslk_max_1_00_00/tirslk_max_1_00_00/driverlib/rom.h
 main.obj: C:/Users/eshan/OneDrive/Documents/ECE\ 1188/tirslk_max_1_00_00/tirslk_max_1_00_00/driverlib/sysctl.h
@@ -130,6 +132,10 @@ C:/Users/eshan/OneDrive/Documents/ECE\ 1188/tirslk_max_1_00_00/tirslk_max_1_00_0
 C:/Users/eshan/OneDrive/Documents/ECE\ 1188/tirslk_max_1_00_00/tirslk_max_1_00_00/inc/UART0.h:
 
 C:/Users/eshan/OneDrive/Documents/ECE\ 1188/tirslk_max_1_00_00/tirslk_max_1_00_00/driverlib/debug.h:
+
+C:/Users/eshan/OneDrive/Documents/ECE\ 1188/tirslk_max_1_00_00/tirslk_max_1_00_00/inc/Motor.h:
+
+C:/Users/eshan/OneDrive/Documents/ECE\ 1188/tirslk_max_1_00_00/tirslk_max_1_00_00/inc/PWM.h:
 
 C:/Users/eshan/OneDrive/Documents/ECE\ 1188/tirslk_max_1_00_00/tirslk_max_1_00_00/driverlib/fpu.h:
 

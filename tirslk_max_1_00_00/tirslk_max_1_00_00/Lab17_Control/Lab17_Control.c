@@ -58,24 +58,24 @@ policies, either expressed or implied, of the FreeBSD Project.
 #include "../inc/Reflectance.h"
 //******************************************************
 // Distance to wall proportional control
-// Incremental speed control 
+// Incremental speed control
 // Integral control, Line follower
 void Controller(void){
 // write this as part of Lab 17
 
 }
 
-void main(void){
-  DisableInterrupts();
-// initialization
-// write this as part of Lab 17
-
-  EnableInterrupts();
-
-  while(1){
-// write this as part of Lab 17
-
-
-  }
-}
+//void main(void){
+//  DisableInterrupts();
+//// initialization
+//// write this as part of Lab 17
+//
+//  EnableInterrupts();
+//
+//  while(1){
+//// write this as part of Lab 17
+//
+//
+//  }
+//}
 

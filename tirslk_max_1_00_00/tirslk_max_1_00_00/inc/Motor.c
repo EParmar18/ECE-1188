@@ -10,19 +10,15 @@
    Jonathan W. Valvano, ISBN: 9781074544300, copyright (c) 2019
  For more information about my classes, my research, and my books, see
  http://users.ece.utexas.edu/~valvano/
-
 Simplified BSD License (FreeBSD License)
 Copyright (c) 2019, Jonathan Valvano, All rights reserved.
-
 Redistribution and use in source and binary forms, with or without modification,
 are permitted provided that the following conditions are met:
-
 1. Redistributions of source code must retain the above copyright notice,
    this list of conditions and the following disclaimer.
 2. Redistributions in binary form must reproduce the above copyright notice,
    this list of conditions and the following disclaimer in the documentation
    and/or other materials provided with the distribution.
-
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
 AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
 IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
@@ -33,7 +29,6 @@ LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED
 AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
 OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE
 USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
 The views and conclusions contained in the software and documentation are
 those of the authors and should not be interpreted as representing official
 policies, either expressed or implied, of the FreeBSD Project.
@@ -51,80 +46,133 @@ policies, either expressed or implied, of the FreeBSD Project.
 #include "../inc/CortexM.h"
 #include "../inc/PWM.h"
 
-// *******Lab 13 solution*******
+void SysTick_Wait1us(uint32_t delay){
+    SysTick->LOAD = (delay*48 - 1);// count down to zero
+    SysTick->VAL = 0;          // any write to CVR clears it and COUNTFLAG in CSR
+    while(( SysTick->CTRL&0x00010000) == 0){};
+}
 
-// ------------Motor_Init------------
-// Initialize GPIO pins for output, which will be
-// used to control the direction of the motors and
-// to enable or disable the drivers.
-// The motors are initially stopped, the drivers
-// are initially powered down, and the PWM speed
-// control is uninitialized.
-// Input: none
-// Output: none
 void Motor_Init(void){
-  // write this as part of Lab 13
-  
+// Initializes the 6 GPIO lines and puts driver to sleep
+// Returns right away
+// initialize P5.4 and P5.5 and make them outputs
+
+    // Set P2.6 and P2.7 as outputs for EN ports
+    P2->SEL0 &= ~0xC0;
+    P2->SEL1 &= ~0xC0;
+    P2->DIR |= 0xC0;
+    P2->REN &= ~0xC0;
+
+    // Set P3.6 and P3.7 as outputs for nSLEEP ports
+    P3->SEL0 &= ~0xC0;
+    P3->SEL1 &= ~0xC0;
+    P3->DIR |= 0xC0;
+    P3->REN &= ~0xC0;
+
+    // Set P5.4 and P5.5 as outputs for PH ports
+    P5->SEL0 &= ~0x30;
+    P5->SEL1 &= ~0x30;
+    P5->DIR  |= 0x30;
+    P5->REN &= ~0x30;
+
+    // Put motors to sleep to prevent any movement during initialization
+    P3->OUT &= ~0xC0;
+
+    // Initialize PWM
+    PWM_Init34(12000, 1500, 1500);
 }
 
-// ------------Motor_Stop------------
-// Stop the motors, power down the drivers, and
-// set the PWM speed control to 0% duty cycle.
-// Input: none
-// Output: none
 void Motor_Stop(void){
-  // write this as part of Lab 13
-  
+// Stops both motors, puts driver to sleep
+// Returns right away
+
+    P2->OUT &= ~0xC0;
+    P3->OUT &= ~0xC0;
+    P5->OUT &= ~0x30;
 }
 
-// ------------Motor_Forward------------
-// Drive the robot forward by running left and
-// right wheels forward with the given duty
-// cycles.
-// Input: leftDuty  duty cycle of left wheel (0 to 14,998)
-//        rightDuty duty cycle of right wheel (0 to 14,998)
-// Output: none
-// Assumes: Motor_Init() has been called
-void Motor_Forward(uint16_t leftDuty, uint16_t rightDuty){ 
-  // write this as part of Lab 13
-  
+void Motor_Forward(uint16_t dutyRight, uint16_t dutyLeft){
+// Drives both motors forward at duty (100 to 9900)
+
+    // Unsleep motors and set direction forward
+    P3->OUT |= 0xC0;
+    P5->OUT &= ~0x30;
+
+    // Set PWM duty cycles
+    PWM_Duty3(dutyRight);
+    PWM_Duty4(dutyLeft);
+}
+void Motor_Backward(uint16_t dutyRight, uint16_t dutyLeft){
+// Drives both motors backward at duty (100 to 9900)
+
+    // Unsleep motors and set direction forward
+    P3->OUT |= 0xC0;
+    P5->OUT |= 0x30;
+
+    // Set PWM duty cycles
+    PWM_Duty3(dutyRight);
+    PWM_Duty4(dutyLeft);
 }
 
-// ------------Motor_Right------------
-// Turn the robot to the right by running the
-// left wheel forward and the right wheel
-// backward with the given duty cycles.
-// Input: leftDuty  duty cycle of left wheel (0 to 14,998)
-//        rightDuty duty cycle of right wheel (0 to 14,998)
-// Output: none
-// Assumes: Motor_Init() has been called
-void Motor_Right(uint16_t leftDuty, uint16_t rightDuty){ 
-  // write this as part of Lab 13
+void Motor_Left(uint16_t dutyRight, uint16_t dutyLeft){
+// Drives just the left motor forward at duty (100 to 9900)
+// Right motor is stopped (sleeping)
 
+    // Sleep right, unsleep left, set left forward
+    P3->OUT &= ~0x40;
+    P3->OUT |= 0x80;
+    P5->OUT &= ~0x10;
+
+    // Set PWM duty cycles
+    PWM_Duty3(dutyRight);
+    PWM_Duty4(dutyLeft);
+}
+void Motor_Right(uint16_t dutyRight, uint16_t dutyLeft){
+// Drives just the right motor forward at duty (100 to 9900)
+// Left motor is stopped (sleeping)
+
+    // Sleep left, unsleep right, set left forward
+    P3->OUT &= ~0x80;
+    P3->OUT |= 0x40;
+    P5->OUT &= ~0x20;
+
+    // Set PWM duty cycles
+    PWM_Duty3(dutyRight);
+    PWM_Duty4(dutyLeft);
 }
 
-// ------------Motor_Left------------
-// Turn the robot to the left by running the
-// left wheel backward and the right wheel
-// forward with the given duty cycles.
-// Input: leftDuty  duty cycle of left wheel (0 to 14,998)
-//        rightDuty duty cycle of right wheel (0 to 14,998)
-// Output: none
-// Assumes: Motor_Init() has been called
-void Motor_Left(uint16_t leftDuty, uint16_t rightDuty){ 
-  // write this as part of Lab 13
-
-}
-
-// ------------Motor_Backward------------
-// Drive the robot backward by running left and
-// right wheels backward with the given duty
-// cycles.
-// Input: leftDuty  duty cycle of left wheel (0 to 14,998)
-//        rightDuty duty cycle of right wheel (0 to 14,998)
-// Output: none
-// Assumes: Motor_Init() has been called
-void Motor_Backward(uint16_t leftDuty, uint16_t rightDuty){ 
-  // write this as part of Lab 13
-
+void Motor_Drive(uint8_t direction, uint16_t dutyRight, uint16_t dutyLeft){
+    switch (direction) {
+        case 0:
+            Motor_Stop();
+            break;
+        case 1:
+            Motor_Forward(2250, 2250);
+            break;
+        case 2:
+            Motor_Backward(2250, 2250);
+            break;
+        case 3:
+            Motor_Left(2000, 2000);
+            break;
+        case 4:
+            Motor_Right(2000, 2000);
+            break;
+        case 5:
+            Motor_Left(1250, 1250);
+            break;
+        case 6:
+            Motor_Right(1250, 1250);
+            break;
+    }
+//    if (direction == 0)
+//        Motor_Stop();
+//    else if (direction == 1)
+//        Motor_Forward(dutyRight, dutyLeft);
+//    else if (direction == 2)
+//        Motor_Backward(dutyRight, dutyLeft);
+//    else if (direction == 3)
+//        Motor_Left(dutyRight, dutyLeft);
+//    else if (direction == 4)
+//        Motor_Right(dutyRight, dutyLeft);
 }

@@ -14,6 +14,7 @@ C:/Users/eshan/OneDrive/Documents/ECE\ 1188/tirslk_max_1_00_00/tirslk_max_1_00_0
 ../Lab12_Motorsmain.c \
 C:/Users/eshan/OneDrive/Documents/ECE\ 1188/tirslk_max_1_00_00/tirslk_max_1_00_00/inc/LaunchPad.c \
 C:/Users/eshan/OneDrive/Documents/ECE\ 1188/tirslk_max_1_00_00/tirslk_max_1_00_00/inc/MotorSimple.c \
+../PWM.c \
 C:/Users/eshan/OneDrive/Documents/ECE\ 1188/tirslk_max_1_00_00/tirslk_max_1_00_00/inc/SysTick.c \
 ../startup_msp432p401r_ccs.c \
 ../system_msp432p401r.c 
@@ -24,6 +25,7 @@ C_DEPS += \
 ./Lab12_Motorsmain.d \
 ./LaunchPad.d \
 ./MotorSimple.d \
+./PWM.d \
 ./SysTick.d \
 ./startup_msp432p401r_ccs.d \
 ./system_msp432p401r.d 
@@ -34,6 +36,7 @@ OBJS += \
 ./Lab12_Motorsmain.obj \
 ./LaunchPad.obj \
 ./MotorSimple.obj \
+./PWM.obj \
 ./SysTick.obj \
 ./startup_msp432p401r_ccs.obj \
 ./system_msp432p401r.obj 
@@ -44,6 +47,7 @@ OBJS__QUOTED += \
 "Lab12_Motorsmain.obj" \
 "LaunchPad.obj" \
 "MotorSimple.obj" \
+"PWM.obj" \
 "SysTick.obj" \
 "startup_msp432p401r_ccs.obj" \
 "system_msp432p401r.obj" 
@@ -54,6 +58,7 @@ C_DEPS__QUOTED += \
 "Lab12_Motorsmain.d" \
 "LaunchPad.d" \
 "MotorSimple.d" \
+"PWM.d" \
 "SysTick.d" \
 "startup_msp432p401r_ccs.d" \
 "system_msp432p401r.d" 
@@ -64,6 +69,7 @@ C_SRCS__QUOTED += \
 "../Lab12_Motorsmain.c" \
 "C:/Users/eshan/OneDrive/Documents/ECE 1188/tirslk_max_1_00_00/tirslk_max_1_00_00/inc/LaunchPad.c" \
 "C:/Users/eshan/OneDrive/Documents/ECE 1188/tirslk_max_1_00_00/tirslk_max_1_00_00/inc/MotorSimple.c" \
+"../PWM.c" \
 "C:/Users/eshan/OneDrive/Documents/ECE 1188/tirslk_max_1_00_00/tirslk_max_1_00_00/inc/SysTick.c" \
 "../startup_msp432p401r_ccs.c" \
 "../system_msp432p401r.c" 
